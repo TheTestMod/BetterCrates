@@ -40,48 +40,30 @@ public class ItemUpgradeBase extends ItemBase {
 	}
 
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer p, World w, BlockPos pos, EnumHand hand, EnumFacing facing,
-			float hitX, float hitY, float hitZ) {
-
+	public EnumActionResult onItemUse(EntityPlayer p, World w, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (!w.isRemote && block != null && w.getBlockState(pos).getBlock() == block) {
-
 			TileEntity te = w.getTileEntity(pos);
 			if (te != null) {
-
 				NBTTagCompound tag = new NBTTagCompound();
-				if (te instanceof TileEntityChest) {
+				NonNullList<ItemStack> inventory = te instanceof TileEntityChest ? ((TileEntityChest) te).chestContents : ((TileEntityBase) te).getInv();
+				ItemStackHelper.saveAllItems(tag, inventory);
+				inventory.clear();
 
-					NonNullList<ItemStack> inv = ReflectionHelper.getPrivateValue(TileEntityChest.class,
-							(TileEntityChest) te, "chestContents", "field_145985_p", "p");
-					ItemStackHelper.saveAllItems(tag, inv);
-					inv.clear();
-				}
-
-				else {
-
-					NonNullList<ItemStack> inv = ((TileEntityBase) te).getInv();
-					ItemStackHelper.saveAllItems(tag, inv);
-					inv.clear();
-				}
 				w.setBlockState(pos, state);
 				TileEntityBase teNew = (TileEntityBase) w.getTileEntity(pos);
 				ItemStackHelper.loadAllItems(tag, teNew.getInv());
 				p.getHeldItem(hand).shrink(1);
 				p.playSound(SoundEvents.BLOCK_ENDERCHEST_OPEN, 1.0F, 1.0F);
 				p.world.playSound(null, p.getPosition(), SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.PLAYERS, 0.4F, 0.8F);
-
-				return EnumActionResult.SUCCESS;
 			}
 		}
-		return EnumActionResult.PASS;
+		return EnumActionResult.SUCCESS;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
-
-		tooltip.add(I18n.format("item." + getUnlocalizedName().substring(5) + ".tooltip"));
+		tooltip.add(I18n.format("item." + getTranslationKey().substring(5) + ".tooltip"));
 		tooltip.add(I18n.format("item.up.tooltip_base"));
-		
 	}
 }

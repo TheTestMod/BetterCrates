@@ -10,20 +10,18 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
 
 public class TileEntityBase extends TileEntity {
 
-	public ItemStackHandler inventory;
+	public CustomItemStackHandler inventory;
 
 	public TileEntityBase(int size) {
-		inventory = new ItemStackHandler(size);
+		inventory = new CustomItemStackHandler(size);
 	}
 
 	public NonNullList<ItemStack> getInv() {
-		return ReflectionHelper.getPrivateValue(ItemStackHandler.class, inventory, "stacks");
+		return inventory.getStacks();
 	}
 
 	@Override
@@ -38,7 +36,6 @@ public class TileEntityBase extends TileEntity {
 		super.readFromNBT(compound);
 	}
 
-	// test_nbt
 	public void readRestorableFromNBT(NBTTagCompound compound) {
 		NBTTagCompound tag = compound.getCompoundTag("inventory");
 		inventory.deserializeNBT(tag);
@@ -46,7 +43,6 @@ public class TileEntityBase extends TileEntity {
 
 	public void writeRestorableToNBT(NBTTagCompound compound) {
 		compound.setTag("inventory", inventory.serializeNBT());
-
 	}
 
 	@Override
@@ -61,10 +57,10 @@ public class TileEntityBase extends TileEntity {
 				: super.getCapability(capability, facing);
 	}
 
-	public boolean isUsableByPlayer(EntityPlayer p) {
+	public boolean isUsableByPlayer(EntityPlayer player) {
 		if (world.getTileEntity(pos) != this || world.getBlockState(pos).getBlock() == Blocks.AIR)
 			return false;
 
-		return p.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64D;
+		return player.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64D;
 	}
 }
