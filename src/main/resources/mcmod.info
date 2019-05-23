@@ -1,0 +1,16 @@
+[
+{
+  "modid": "bettercrates",
+  "name": "Better crates",
+  "description": "Better storage of your items",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["TheTestMod"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

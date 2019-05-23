@@ -1,0 +1,38 @@
+#General
+itemGroup.bettercrates=Better crates
+
+#Crate
+tile.wooden_crate.name=§fДеревянный ящик
+tile.copper_crate.name=§fМедный ящик
+tile.tin_crate.name=§fОловянный ящик
+tile.iron_crate.name=§fЖелезный ящик
+tile.golden_crate.name=§fЗолотой ящик
+tile.diamond_crate.name=§fАлмазный ящик
+tile.obsidian_crate.name=§fОбсидиановый ящик
+
+#Crate tooltip
+item.crate_base.tooltip=§3Сохраняет содержимое
+item.crate_base2.tooltip=§4Защищён от взрывов
+
+#Upgrade
+item.up_wooden.name=Деревянное улучшение
+item.up_copper.name=Медное улучшение
+item.up_tin.name=Оловянное улучшение
+item.up_iron.name=Железное улучшение
+item.up_golden.name=Железное/Золотое улучшение
+item.up_golden2.name=Медное/Золотое улучшение
+item.up_golden3.name=Оловянное/Золотое улучшение
+item.up_diamond.name=Алмазное улучшение
+item.up_obsidian.name=Обсидиановое улучшение
+
+#Upgrade tooltip
+item.up.tooltip_base=§7(§6§oИспользуй Shift + Right Click§7)
+item.up_wooden.tooltip=§3Upgrade §4Сундук §7> §2Деревянный ящик
+item.up_copper.tooltip=§3Upgrade §4Сундук §7> §2Медный ящик
+item.up_tin.tooltip=§3Upgrade §4Сундук §7> §2Оловянный ящик
+item.up_iron.tooltip=§3Upgrade §4Деревянный ящик §7> §2Железный ящик
+item.up_golden.tooltip=§3Upgrade §4Железный ящик §7> §2Золотой ящик
+item.up_golden2.tooltip=§3Upgrade §4Медный ящик §7> §2Золотой ящик
+item.up_golden3.tooltip=§3Upgrade §4Оловянный ящик §7> §2Золотой ящик
+item.up_diamond.tooltip=§3Upgrade §4Золотой ящик §7> §2Алмазный ящик
+item.up_obsidian.tooltip=§3Upgrade §4Алмазный ящик §7> §2Обсидиановый ящик

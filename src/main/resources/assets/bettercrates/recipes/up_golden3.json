@@ -1,0 +1,25 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [
+        "SIS",
+        "ITI",
+        "SIS"
+    ],
+    "key": {
+        "I": {
+            "type": "forge:ore_dict",
+            "ore": "plankWood"
+        },
+        "S": {
+            "type": "forge:ore_dict",
+            "ore": "ingotGold"
+        },
+        "T": {
+            "type": "forge:ore_dict",
+            "ore": "ingotTin"
+        }
+    },
+    "result": {
+        "item": "bettercrates:up_golden3"
+    }
+}

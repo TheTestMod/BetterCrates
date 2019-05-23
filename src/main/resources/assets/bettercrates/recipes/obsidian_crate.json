@@ -1,0 +1,21 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [
+        "SIS",
+        "I I",
+        "SIS"
+    ],
+    "key": {
+        "I": {
+            "type": "forge:ore_dict",
+            "ore": "plankWood"
+        },
+        "S": {
+            "type": "forge:ore_dict",
+            "ore": "obsidian"
+        }
+    },
+    "result": {
+        "item": "bettercrates:obsidian_crate"
+    }
+}

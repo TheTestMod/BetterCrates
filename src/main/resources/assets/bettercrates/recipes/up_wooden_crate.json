@@ -1,0 +1,24 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [
+        "SIS",
+        "ITI",
+        "SIS"
+    ],
+    "key": {
+        "I": {
+            "type": "forge:ore_dict",
+            "ore": "plankWood"
+        },
+        "S": {
+            "type": "forge:ore_dict",
+            "ore": "logWood"
+        },
+        "T": {
+            "item": "minecraft:sign"
+        }
+    },
+    "result": {
+        "item": "bettercrates:up_wooden"
+    }
+}
