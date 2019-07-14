@@ -1,8 +1,10 @@
 package thetestmod.bettercrates.tile;
 
+import thetestmod.bettercrates.enums.EnumCrate;
+
 public class TileEntityDiamondCrate extends TileEntityBase {
 
     public TileEntityDiamondCrate() {
-        super(117);
+        super(EnumCrate.DIAMOND.getType(), 117);
     }
 }

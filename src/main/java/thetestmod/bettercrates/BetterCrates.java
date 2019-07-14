@@ -1,51 +1,39 @@
 package thetestmod.bettercrates;
 
-import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import thetestmod.bettercrates.enums.EnumCrate;
+import thetestmod.bettercrates.gui.GuiBase13Rows;
+import thetestmod.bettercrates.gui.GuiBase9Rows;
 import thetestmod.bettercrates.init.BlocksRegistry;
-import thetestmod.bettercrates.init.GuiHandler;
-import thetestmod.bettercrates.init.ItemsRegistry;
+import thetestmod.bettercrates.init.ContainerRegistry;
 
-@Mod(modid = BetterCrates.MODID, name = "Better Crates", version = "@VERSION@")
+@Mod(BetterCrates.MODID)
 public class BetterCrates {
 
-	public static final String MODID = "bettercrates";
+    public static final String MODID = "bettercrates";
 
-	@Mod.Instance(BetterCrates.MODID)
-	public static BetterCrates instance;
+    public static final ItemGroup GROUP = new ItemGroup(MODID) {
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(BlocksRegistry.WOODEN_CRATE);
+        }
+    };
 
-	public static final CreativeTabs CREATIVE_TAB = new CreativeTabs(MODID) {
-		@Override
-		public ItemStack createIcon() {
-			return new ItemStack(BlocksRegistry.WOODEN_CRATE);
-		}
-	};
+    public BetterCrates() {
+        BlocksRegistry.class.getName();
+        System.out.println("ABC >>> " + EnumCrate.VALUES.length + " ... " + BlocksRegistry.WOODEN_CRATE);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetupEvent);
+    }
 
-	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
-		BlocksRegistry.register();
-		ItemsRegistry.register();
-		if (FMLCommonHandler.instance().getEffectiveSide().isClient()) {
-			preInit();
-		}
-	}
+    public void commonSetupEvent(FMLCommonSetupEvent event) {
 
-	@SideOnly(Side.CLIENT)
-	public void preInit() {
-		ItemsRegistry.registerRender();
-		BlocksRegistry.registerRender();
-	}
-
-	@Mod.EventHandler
-	public void init(FMLInitializationEvent e) {
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
-	}
+//        ScreenManager.class.getName();
+        ScreenManager.registerFactory(ContainerRegistry.CONTAINER_9_ROWS, GuiBase9Rows::new);
+        ScreenManager.registerFactory(ContainerRegistry.CONTAINER_13_ROWS, GuiBase13Rows::new);
+    }
 }

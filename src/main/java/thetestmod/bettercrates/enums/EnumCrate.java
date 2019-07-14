@@ -1,13 +1,15 @@
 package thetestmod.bettercrates.enums;
 
+import net.minecraft.block.Block;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import thetestmod.bettercrates.BetterCrates;
+import thetestmod.bettercrates.init.BlocksRegistry;
 import thetestmod.bettercrates.tile.*;
-import thetestmod.bettercrates.tile.TileEntityBase;
 
 import java.util.function.Supplier;
 
-public enum EnumCrate {
+public enum  EnumCrate {
 
     WOODEN(TileEntityWoodenCrate.class, TileEntityWoodenCrate::new, "wooden", 5F, new int[] {4, 9, 12, 84, 12, 142}, new int[]{184, 166, 178}),
     IRON(TileEntityIronCrate.class, TileEntityIronCrate::new, "iron", 5F, new int[] {7, 9, 12, 138, 12, 196}, new int[]{184, 220, 232}),
@@ -23,6 +25,8 @@ public enum EnumCrate {
     private String name;
     private String transKey;
     private ResourceLocation background;
+    private Block block;
+    private TileEntityType<? extends TileEntityBase> type;
     private float resistance;
     private int[] slots;
     private int[] size;
@@ -31,7 +35,7 @@ public enum EnumCrate {
         this.tile = tile;
         this.supplier = supplier;
         this.name = name + "_crate";
-        this.transKey = "tile." + this.name + ".name";
+        this.transKey = "block.bettercrates." + this.name;
         this.background = new ResourceLocation(BetterCrates.MODID, "textures/gui/" + name + "_crate.png");
         this.resistance = resistance;
         this.slots = slots;
@@ -52,6 +56,19 @@ public enum EnumCrate {
 
     public String getTransKey() {
         return transKey;
+    }
+
+    public void setBlock(Block block) {
+        this.block = block;
+        this.type = TileEntityType.Builder.create(supplier, block).build(null);
+    }
+
+    public Block getBlock() {
+        return block;
+    }
+
+    public TileEntityType<? extends TileEntityBase> getType() {
+        return type;
     }
 
     public ResourceLocation getBackground() {

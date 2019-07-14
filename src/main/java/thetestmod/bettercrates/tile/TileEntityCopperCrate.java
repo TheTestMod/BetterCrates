@@ -1,8 +1,10 @@
 package thetestmod.bettercrates.tile;
 
+import thetestmod.bettercrates.enums.EnumCrate;
+
 public class TileEntityCopperCrate extends TileEntityBase {
 
     public TileEntityCopperCrate() {
-        super(45);
+        super(EnumCrate.COPPER.getType(), 45);
     }
 }

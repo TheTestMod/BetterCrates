@@ -1,69 +1,67 @@
 package thetestmod.bettercrates.items;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.ItemStackHelper;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.item.ItemUseContext;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.ChestTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import thetestmod.bettercrates.items.base.ItemBase;
+import thetestmod.bettercrates.BetterCrates;
+import thetestmod.bettercrates.init.ItemsRegistry;
 import thetestmod.bettercrates.tile.TileEntityBase;
 
-public class ItemUpgradeBase extends ItemBase {
+import javax.annotation.Nullable;
+import java.util.List;
 
-	private Block block;
-	private IBlockState state;
+public class ItemUpgradeBase extends Item {
 
-	public ItemUpgradeBase(String name, Block block, IBlockState state) {
-		super(name);
-		this.block = block;
-		this.state = state;
-	}
+    private Block block;
+    private BlockState state;
 
-	@Override
-	public EnumActionResult onItemUse(EntityPlayer p, World w, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (!w.isRemote && block != null && w.getBlockState(pos).getBlock() == block) {
-			TileEntity te = w.getTileEntity(pos);
-			if (te != null) {
-				NBTTagCompound tag = new NBTTagCompound();
-				NonNullList<ItemStack> inventory = te instanceof TileEntityChest ? ((TileEntityChest) te).chestContents : ((TileEntityBase) te).getInv();
-				ItemStackHelper.saveAllItems(tag, inventory);
-				inventory.clear();
+    public ItemUpgradeBase(String name, Block block, BlockState state) {
+        super(new Properties().group(BetterCrates.GROUP));
+        setRegistryName(BetterCrates.MODID, name);
+        this.block = block;
+        this.state = state;
+        ItemsRegistry.items.add(this);
+    }
 
-				w.setBlockState(pos, state);
-				TileEntityBase teNew = (TileEntityBase) w.getTileEntity(pos);
-				ItemStackHelper.loadAllItems(tag, teNew.getInv());
-				p.getHeldItem(hand).shrink(1);
-				p.playSound(SoundEvents.BLOCK_ENDERCHEST_OPEN, 1.0F, 1.0F);
-				p.world.playSound(null, p.getPosition(), SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.PLAYERS, 0.4F, 0.8F);
-			}
-		}
-		return EnumActionResult.SUCCESS;
-	}
+    @Override
+    public ActionResultType onItemUse(ItemUseContext context) {
+        if (!context.getWorld().isRemote && context.getWorld().getBlockState(context.getPos()).getBlock() == block) {
+            TileEntity te = context.getWorld().getTileEntity(context.getPos());
+            if (te != null) {
+                CompoundNBT tag = new CompoundNBT();
+                NonNullList<ItemStack> inventory = te instanceof ChestTileEntity ? ((ChestTileEntity) te).chestContents : ((TileEntityBase) te).getInv();
+                ItemStackHelper.saveAllItems(tag, inventory);
+                inventory.clear();
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced) {
-		tooltip.add(I18n.format("item." + getTranslationKey().substring(5) + ".tooltip"));
-		tooltip.add(I18n.format("item.up.tooltip_base"));
-	}
+                context.getWorld().setBlockState(context.getPos(), state);
+                TileEntityBase teNew = (TileEntityBase) context.getWorld().getTileEntity(context.getPos());
+                ItemStackHelper.loadAllItems(tag, teNew.getInv());
+                context.getPlayer().getHeldItem(context.func_221531_n()).shrink(1);
+                context.getPlayer().playSound(SoundEvents.BLOCK_ENDER_CHEST_OPEN, 1.0F, 1.0F);
+                context.getPlayer().world.playSound(null, context.getPlayer().getPosition(), SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.PLAYERS, 0.4F, 0.8F);
+
+            }
+        }
+        return ActionResultType.SUCCESS;
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        tooltip.add(new TranslationTextComponent(getTranslationKey() + ".tooltip"));
+        tooltip.add(new TranslationTextComponent("item.up.tooltip_base"));
+    }
 }

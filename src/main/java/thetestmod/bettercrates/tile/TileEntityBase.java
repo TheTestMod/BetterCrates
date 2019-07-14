@@ -1,66 +1,68 @@
 package thetestmod.bettercrates.tile;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
+import net.minecraft.block.Blocks;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 
-public class TileEntityBase extends TileEntity {
+import javax.annotation.Nullable;
 
-	public CustomItemStackHandler inventory;
+public abstract class TileEntityBase extends TileEntity /*implements INamedContainerProvider*/ {
 
-	public TileEntityBase(int size) {
-		inventory = new CustomItemStackHandler(size);
-	}
+    public CustomItemStackHandler inventory;
 
-	public NonNullList<ItemStack> getInv() {
-		return inventory.getStacks();
-	}
+    public TileEntityBase(TileEntityType<?> type, int size) {
+        super(type);
+        inventory = new CustomItemStackHandler(size);
+    }
 
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		writeRestorableToNBT(compound);
-		return super.writeToNBT(compound);
-	}
+    public NonNullList<ItemStack> getInv() {
+        return inventory.getStacks();
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound compound) {
-		readRestorableFromNBT(compound);
-		super.readFromNBT(compound);
-	}
+    @Override
+    public CompoundNBT write(CompoundNBT compound) {
+        writeRestorableToNBT(compound);
+        return super.write(compound);
+    }
 
-	public void readRestorableFromNBT(NBTTagCompound compound) {
-		NBTTagCompound tag = compound.getCompoundTag("inventory");
-		inventory.deserializeNBT(tag);
-	}
+    @Override
+    public void read(CompoundNBT compound) {
+        readRestorableFromNBT(compound);
+        super.read(compound);
+    }
 
-	public void writeRestorableToNBT(NBTTagCompound compound) {
-		compound.setTag("inventory", inventory.serializeNBT());
-	}
+    public void readRestorableFromNBT(CompoundNBT compound) {
+        CompoundNBT tag = compound.getCompound("inventory");
+        inventory.deserializeNBT(tag);
+    }
 
-	@Override
-	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
-		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
-	}
+    public void writeRestorableToNBT(CompoundNBT compound) {
+        compound.put("inventory", inventory.serializeNBT());
+    }
 
-	@Nullable
-	@Override
-	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
-		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? (T) inventory
-				: super.getCapability(capability, facing);
-	}
+    private final LazyOptional<IItemHandler> holder = LazyOptional.of(() -> inventory);
 
-	public boolean isUsableByPlayer(EntityPlayer player) {
-		if (world.getTileEntity(pos) != this || world.getBlockState(pos).getBlock() == Blocks.AIR)
-			return false;
+    @Nullable
+    @Override
+    public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
+        return !removed && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? holder.cast()
+                : super.getCapability(capability, facing);
+    }
 
-		return player.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64D;
-	}
+    public boolean isUsableByPlayer(PlayerEntity player) {
+        if (world.getTileEntity(pos) != this || world.getBlockState(pos).getBlock() == Blocks.AIR)
+            return false;
+
+        return player.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64D;
+    }
 }

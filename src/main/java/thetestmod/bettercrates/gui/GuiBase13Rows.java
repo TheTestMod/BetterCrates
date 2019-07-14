@@ -1,13 +1,12 @@
 package thetestmod.bettercrates.gui;
 
-import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.util.text.ITextComponent;
 import thetestmod.bettercrates.container.ContainerBase13Rows;
-import thetestmod.bettercrates.enums.EnumCrate;
-import thetestmod.bettercrates.tile.TileEntityBase;
 
-public class GuiBase13Rows extends GuiBase {
+public class GuiBase13Rows extends GuiBase<ContainerBase13Rows> {
 
-    public GuiBase13Rows(InventoryPlayer playerInv, TileEntityBase tile, EnumCrate enumCrate) {
-        super(new ContainerBase13Rows(playerInv, tile, enumCrate), enumCrate);
+    public GuiBase13Rows(ContainerBase13Rows container, PlayerInventory playerInv, ITextComponent text) {
+        super(container, playerInv, text);
     }
 }

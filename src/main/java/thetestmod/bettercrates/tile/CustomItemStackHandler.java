@@ -21,7 +21,7 @@ public class CustomItemStackHandler extends ItemStackHandler {
     @Nonnull
     @Override
     public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-        return Block.getBlockFromItem(stack.getItem()) instanceof BaseCrate ? stack : super.insertItem(slot, stack, simulate);
+        return Block.getBlockFromItem(stack.getItem()) instanceof BaseCrate  ? stack : super.insertItem(slot, stack, simulate);
     }
 
     @Override

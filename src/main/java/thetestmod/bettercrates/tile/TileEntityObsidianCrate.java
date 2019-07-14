@@ -1,8 +1,10 @@
 package thetestmod.bettercrates.tile;
 
+import thetestmod.bettercrates.enums.EnumCrate;
+
 public class TileEntityObsidianCrate extends TileEntityBase {
 
     public TileEntityObsidianCrate() {
-        super(117);
+        super(EnumCrate.OBSIDIAN.getType(), 117);
     }
 }
