@@ -50,7 +50,7 @@ public class ItemUpgradeBase extends Item {
                 context.getWorld().setBlockState(context.getPos(), state);
                 TileEntityBase teNew = (TileEntityBase) context.getWorld().getTileEntity(context.getPos());
                 ItemStackHelper.loadAllItems(tag, teNew.getInv());
-                context.getPlayer().getHeldItem(context.func_221531_n()).shrink(1);
+                context.getPlayer().getHeldItem(context.getHand()).shrink(1);
                 context.getPlayer().playSound(SoundEvents.BLOCK_ENDER_CHEST_OPEN, 1.0F, 1.0F);
                 context.getPlayer().world.playSound(null, context.getPlayer().getPosition(), SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.PLAYERS, 0.4F, 0.8F);
 
