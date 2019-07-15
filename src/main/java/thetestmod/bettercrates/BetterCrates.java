@@ -4,7 +4,7 @@ import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import thetestmod.bettercrates.enums.EnumCrate;
 import thetestmod.bettercrates.gui.GuiBase13Rows;
@@ -30,7 +30,7 @@ public class BetterCrates {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetupEvent);
     }
 
-    public void commonSetupEvent(FMLCommonSetupEvent event) {
+    public void commonSetupEvent(FMLClientSetupEvent event) {
 
 //        ScreenManager.class.getName();
         ScreenManager.registerFactory(ContainerRegistry.CONTAINER_9_ROWS, GuiBase9Rows::new);
