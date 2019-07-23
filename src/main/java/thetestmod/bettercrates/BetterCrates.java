@@ -26,7 +26,7 @@ public class BetterCrates {
 
     public BetterCrates() {
         BlocksRegistry.class.getName();
-        System.out.println("ABC >>> " + EnumCrate.VALUES.length + " ... " + BlocksRegistry.WOODEN_CRATE);
+        System.out.println("Just a log from BetterCrates >>> " + EnumCrate.VALUES.length + " ... " + BlocksRegistry.WOODEN_CRATE);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetupEvent);
     }
 
