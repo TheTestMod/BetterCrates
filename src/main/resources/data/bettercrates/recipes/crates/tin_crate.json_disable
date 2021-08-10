@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "SIS",
+        "I I",
+        "SIS"
+    ],
+    "key": {
+        "I": {
+            "type": "forge:ore_dict",
+            "ore": "plankWood"
+        },
+        "S": {
+            "type": "forge:ore_dict",
+            "ore": "ingotTin"
+        }
+    },
+    "result": {
+        "item": "bettercrates:tin_crate"
+    }
+}
