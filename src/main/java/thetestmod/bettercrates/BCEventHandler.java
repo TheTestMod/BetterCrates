@@ -5,7 +5,6 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -26,7 +25,7 @@ public class BCEventHandler {
     @SubscribeEvent
     public static void onItemRegistry(RegistryEvent.Register<Item> event) {
         for (EnumCrate crate : EnumCrate.VALUES) {
-            event.getRegistry().register(new BlockItem(crate.getBlock(), new Item.Properties().tab(BetterCrates.GROUP).addToolType(ToolType.AXE, 0)).setRegistryName(crate.getBlock().getRegistryName()));
+            event.getRegistry().register(new BlockItem(crate.getBlock(), new Item.Properties().tab(BetterCrates.GROUP)).setRegistryName(crate.getBlock().getRegistryName()));
         }
         ItemsRegistry.items.forEach(event.getRegistry()::register);
     }
