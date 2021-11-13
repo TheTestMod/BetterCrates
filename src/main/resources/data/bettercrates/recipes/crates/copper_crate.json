@@ -7,15 +7,13 @@
     ],
     "key": {
         "I": {
-            "type": "forge:ore_dict",
-            "ore": "plankWood"
+            "tag": "minecraft:planks"
         },
         "S": {
-            "type": "forge:ore_dict",
-            "ore": "ingotTin"
+            "tag": "forge:ingots/copper"
         }
     },
     "result": {
-        "item": "bettercrates:tin_crate"
+        "item": "bettercrates:copper_crate"
     }
 }

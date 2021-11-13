@@ -7,18 +7,16 @@
     ],
     "key": {
         "I": {
-            "type": "forge:ore_dict",
-            "ore": "plankWood"
+            "tag": "minecraft:planks"
         },
         "S": {
-            "type": "forge:ore_dict",
-            "ore": "ingotTin"
+            "tag": "forge:ingots/gold"
         },
         "T": {
-            "tag": "minecraft:signs"
+            "tag": "forge:ingots/tin"
         }
     },
     "result": {
-        "item": "bettercrates:up_tin"
+        "item": "bettercrates:up_golden3"
     }
 }
