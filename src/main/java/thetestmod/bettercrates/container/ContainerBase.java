@@ -28,7 +28,12 @@ public class ContainerBase extends AbstractContainerMenu {
 
         for (int i = 0; i < enumCrate.getSlots()[0]; i++) {
             for (int j = 0; j < enumCrate.getSlots()[1]; j++) {
-                addSlot(new SlotItemHandler(inventory, j + i * enumCrate.getSlots()[1], 12 + j * 18, 5 + i * 18));
+                addSlot(new SlotItemHandler(inventory, j + i * enumCrate.getSlots()[1], 12 + j * 18, 5 + i * 18) {
+                    @Override
+                    public void setChanged() {
+                        tile.setChanged();
+                    }
+                });
             }
         }
 
