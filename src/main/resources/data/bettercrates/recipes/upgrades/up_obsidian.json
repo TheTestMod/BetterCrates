@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "SIS",
+        "ITI",
+        "SIS"
+    ],
+    "key": {
+        "I": {
+            "tag": "minecraft:planks"
+        },
+        "S": {
+            "item": "minecraft:obsidian"
+        },
+        "T": {
+            "tag": "minecraft:signs"
+        }
+    },
+    "result": {
+        "item": "bettercrates:up_obsidian"
+    }
+}
