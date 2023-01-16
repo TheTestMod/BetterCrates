@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "bettercrates:wooden_crate",
+    "bettercrates:copper_crate",
+    "bettercrates:tin_crate",
+    "bettercrates:iron_crate",
+    "bettercrates:golden_crate",
+    "bettercrates:diamond_crate",
+    "bettercrates:obsidian_crate"
+  ]
+}
