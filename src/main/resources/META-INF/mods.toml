@@ -1,0 +1,13 @@
+modLoader="javafml"
+loaderVersion="[44,)"
+license="MIT"
+issueTrackerURL="https://github.com/TheTestMod/BetterCrates/issues"
+[[mods]]
+modId="bettercrates"
+version="${file.jarVersion}"
+displayName="Better Crates"
+displayURL="https://minecraft.curseforge.com/projects/better-crates"
+authors="TheTestMod, FTB_lag"
+description='''
+Better storage of your items
+'''
