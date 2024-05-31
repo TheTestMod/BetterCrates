@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "SIS",
+        "I I",
+        "SIS"
+    ],
+    "key": {
+        "I": {
+            "tag": "minecraft:planks"
+        },
+        "S": {
+            "tag": "forge:gems/diamond"
+        }
+    },
+    "result": {
+        "item": "bettercrates:diamond_crate"
+    }
+}
