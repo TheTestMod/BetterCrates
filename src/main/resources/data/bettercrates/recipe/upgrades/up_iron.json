@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "SIS",
+        "ITI",
+        "SIS"
+    ],
+    "key": {
+        "I": {
+            "tag": "minecraft:planks"
+        },
+        "S": {
+            "tag": "c:ingots/iron"
+        },
+        "T": {
+            "tag": "minecraft:signs"
+        }
+    },
+    "result": {
+        "count": 1,
+        "id": "bettercrates:up_iron"
+    }
+}
