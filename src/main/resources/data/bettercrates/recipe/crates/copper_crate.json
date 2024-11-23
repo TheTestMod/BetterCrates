@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "SIS",
+        "I I",
+        "SIS"
+    ],
+    "key": {
+        "I": {
+            "tag": "minecraft:planks"
+        },
+        "S": {
+            "tag": "c:ingots/copper"
+        }
+    },
+    "result": {
+        "count": 1,
+        "id": "bettercrates:copper_crate"
+    }
+}
