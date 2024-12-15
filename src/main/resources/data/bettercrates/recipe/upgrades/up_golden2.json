@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "SIS",
+        "ITI",
+        "SIS"
+    ],
+    "key": {
+        "I": "#minecraft:planks",
+        "S": "#forge:ingots/gold",
+        "T": "#forge:ingots/copper"
+    },
+    "result": {
+        "count": 1,
+        "id": "bettercrates:up_golden2"
+    }
+}
