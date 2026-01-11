@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "bettercrates:block/golden_crate" }
+    }
+}
