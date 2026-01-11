@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "SIS",
+        "ITI",
+        "SIS"
+    ],
+    "key": {
+        "I": "#minecraft:planks",
+        "S": "#forge:gems/diamond",
+        "T": "#minecraft:signs"
+    },
+    "result": {
+        "count": 1,
+        "id": "bettercrates:up_diamond"
+    }
+}
