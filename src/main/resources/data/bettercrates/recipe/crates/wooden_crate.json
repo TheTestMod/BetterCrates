@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "SIS",
+        "I I",
+        "SIS"
+    ],
+    "key": {
+        "I": "#minecraft:planks",
+        "S": "#minecraft:logs"
+    },
+    "result": {
+        "count": 1,
+        "id": "bettercrates:wooden_crate"
+    }
+}
