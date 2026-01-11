@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "SIS",
+        "ITI",
+        "SIS"
+    ],
+    "key": {
+        "I": "#minecraft:planks",
+        "S": "#forge:ingots/copper",
+        "T": "#minecraft:signs"
+    },
+    "result": {
+        "count": 1,
+        "id": "bettercrates:up_copper"
+    }
+}
