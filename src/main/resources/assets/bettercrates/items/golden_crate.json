@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "bettercrates:item/golden_crate"
+  }
+}
