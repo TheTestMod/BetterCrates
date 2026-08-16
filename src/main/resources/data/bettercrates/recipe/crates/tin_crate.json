@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "SIS",
+        "I I",
+        "SIS"
+    ],
+    "key": {
+        "I": "#minecraft:planks",
+        "S": "#c:ingots/tin"
+    },
+    "result": {
+        "count": 1,
+        "id": "bettercrates:tin_crate"
+    }
+}
